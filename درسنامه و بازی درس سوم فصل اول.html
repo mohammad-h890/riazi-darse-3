@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بخش‌پذیری | ریاضی ششم دبستان — طراحی شده توسط محمد حسین عربی آموزگار ششم</title>
+<meta name="description" content="آموزش و بازی تعاملی بخش‌پذیری ریاضی ششم دبستان - طراحی شده توسط محمد حسین عربی آموزگار ششم">
+<meta name="theme-color" content="#2f6fd0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f5fc;
+  --bg-2:#f8fafd;
+  --card:#ffffff;
+  --ink:#102a45;
+  --ink-2:#254465;
+  --muted:#5f7e9d;
+  --line:#d8e5f2;
+  --blue:#2563eb;   --blue-s:#eaf1fe;  --blue-d:#1d4ed8;
+  --teal:#0d9488;   --teal-s:#e6f7f6;  --teal-d:#0f766e;
+  --amber:#d97706;  --amber-s:#fef3c7; --amber-d:#b45309;
+  --violet:#7c3aed; --violet-s:#f3e8ff;--violet-d:#6d28d9;
+  --pink:#db2777;   --pink-s:#fce7f3;  --pink-d:#be185d;
+  --green:#16a34a;  --green-s:#dcfce7; --green-d:#15803d;
+  --red:#dc2626;    --red-s:#fee2e2;
+  --shadow:0 12px 32px -10px rgba(16,42,69,.15);
+  --shadow-sm:0 4px 14px -6px rgba(16,42,69,.18);
+  --r:22px; --r-sm:14px;
+  --fs:16.5px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Vazirmatn',system-ui,sans-serif;
+  background:
+    radial-gradient(1000px 500px at 90% -5%,#e0ecfd 0,rgba(224,236,253,0) 65%),
+    radial-gradient(800px 450px at 0% 100%,#e0f8f5 0,rgba(224,248,245,0) 60%),
+    var(--bg);
+  color:var(--ink);
+  font-size:var(--fs);
+  line-height:1.85;
+  direction:rtl;
+  min-height:100vh;
+  -webkit-text-size-adjust:100%;
+}
+img,svg{max-width:100%}
+button,input{font-family:inherit}
+.wrap{max-width:1020px;margin:0 auto;padding:0 14px 40px}
+
+/* نوار سربرگ */
+.topbar{
+  position:sticky;top:0;z-index:70;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:1020px;margin:0 auto;padding:8px 14px;
+  display:flex;align-items:center;gap:10px;justify-content:space-between;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;border:0;background:none;
+  padding:4px;cursor:pointer;color:inherit;text-align:right;
+}
+.brand .logo{width:38px;height:38px;flex:0 0 38px}
+.brand b{font-size:1.02rem;font-weight:800;display:block}
+.brand small{font-size:.72rem;color:var(--muted);font-weight:500;display:block;line-height:1.2}
+.navbtns{display:flex;align-items:center;gap:6px}
+
+/* نشان‌های دانش‌آموز و امتیاز در هدر */
+.user-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid var(--line);
+  padding:5px 12px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--ink-2);
+}
+.score-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--amber-s),#fff);
+  border:1.5px solid #fcd34d;padding:5px 12px;border-radius:999px;
+  font-size:.84rem;font-weight:800;color:var(--amber-d);
+  box-shadow:0 3px 10px -4px rgba(217,119,6,.3);
+}
+.iconbtn{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line);background:#fff;color:var(--ink-2);
+  border-radius:12px;padding:7px 11px;font-size:.84rem;font-weight:600;cursor:pointer;
+  transition:all .15s ease;white-space:nowrap;
+}
+.iconbtn svg{width:16px;height:16px}
+.iconbtn:hover{background:var(--blue-s);border-color:#bfdbfe;transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.iconbtn.primary{background:linear-gradient(180deg,var(--blue),var(--blue-d));border-color:transparent;color:#fff}
+.iconbtn.primary:hover{box-shadow:0 6px 18px -4px rgba(37,99,235,.5)}
+@media(max-width:680px){.lbl-hide{display:none}.topbar-in{padding:7px 10px}}
+
+.progressbar{height:6px;background:#e2e8f0}
+.progressbar > i{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,var(--teal),var(--blue));
+  transition:width .45s cubic-bezier(.4,0,.2,1);
+}
+.progressmeta{
+  max-width:1020px;margin:0 auto;padding:4px 14px 6px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.76rem;color:var(--muted);font-weight:600;
+}
+
+/* صفحه‌ها */
+.screen{display:none;padding:16px 0 90px}
+.screen.active{display:block;animation:screenIn .35s cubic-bezier(.34,1.15,.5,1)}
+@keyframes screenIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.screen-title{font-size:1.45rem;font-weight:800;margin:6px 0 4px;color:var(--ink)}
+.screen-sub{color:var(--muted);margin:0 0 16px;font-size:.93rem}
+/* کارت‌ها */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:20px;box-shadow:var(--shadow);margin-bottom:16px;
+}
+.card.tight{padding:14px}
+.card-head{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.card-head .dot{width:10px;height:10px;border-radius:50%;background:var(--blue)}
+.card-head h3{margin:0;font-size:1.06rem;font-weight:800}
+
+.kicker{
+  display:inline-block;font-size:.76rem;font-weight:800;color:var(--blue-d);
+  background:var(--blue-s);border-radius:999px;padding:3px 12px;margin-bottom:8px;
+}
+.kicker.teal{color:var(--teal-d);background:var(--teal-s)}
+.kicker.amber{color:var(--amber-d);background:var(--amber-s)}
+.kicker.violet{color:var(--violet-d);background:var(--violet-s)}
+.kicker.pink{color:var(--pink-d);background:var(--pink-s)}
+.kicker.green{color:var(--green-d);background:var(--green-s)}
+
+/* صفحه ورودی دانش‌آموز */
+.welcome-hero{
+  text-align:center;padding:30px 16px;background:#fff;border-radius:28px;
+  border:2px solid #dbeafe;box-shadow:0 20px 45px -15px rgba(37,99,235,.25);
+  margin-top:20px;position:relative;overflow:hidden;
+}
+.welcome-hero::before{
+  content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;
+  background:radial-gradient(circle,rgba(37,99,235,.12),transparent 70%);border-radius:50%;
+}
+.welcome-hero h1{font-size:1.85rem;font-weight:900;margin:12px 0 6px;color:var(--ink)}
+.welcome-author-badge{
+  display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);
+  border:1px solid #bfdbfe;color:#1e40af;padding:6px 16px;border-radius:999px;font-size:.88rem;font-weight:700;
+  margin-bottom:14px;
+}
+.login-box{
+  max-width:380px;margin:24px auto 8px;text-align:right;background:var(--bg-2);
+  padding:20px;border-radius:20px;border:1px solid var(--line);
+}
+.input-label{display:block;font-size:.88rem;font-weight:700;margin-bottom:8px;color:var(--ink-2)}
+.name-input{
+  width:100%;padding:12px 14px;border:2px solid #cbd5e1;border-radius:14px;
+  font-size:1.05rem;font-weight:700;outline:none;transition:border-color .2s;text-align:right;
+}
+.name-input:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-s)}
+
+/* کارت خوش‌آمدگویی و مشخصات دانش‌آموز در داشبورد */
+.student-banner{
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;
+  border-radius:24px;padding:22px;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 14px 30px -10px rgba(37,99,235,.45);
+}
+.student-banner h2{margin:0 0 4px;font-size:1.35rem;font-weight:800}
+.student-banner p{margin:0;opacity:.9;font-size:.9rem}
+.student-banner-score{
+  background:rgba(255,255,255,.18);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:12px 20px;text-align:center;
+}
+.student-banner-score .val{font-size:2rem;font-weight:900;line-height:1}
+.student-banner-score .lbl{font-size:.78rem;opacity:.95;margin-top:2px}
+/* کارت‌های صفحه اصلی */
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:760px){.home-grid{grid-template-columns:1fr}}
+.home-card{
+  position:relative;overflow:hidden;cursor:pointer;text-align:right;
+  border:1px solid var(--line);border-radius:24px;background:#fff;padding:22px;
+  box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .25s ease;font:inherit;color:inherit;
+}
+.home-card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -20px rgba(18,43,69,.35)}
+.home-card .big-icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;margin-bottom:12px}
+.home-card h2{margin:0 0 6px;font-size:1.18rem;font-weight:800}
+.home-card p{margin:0 0 14px;color:var(--muted);font-size:.9rem;line-height:1.7}
+.home-card .go{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.9rem}
+.home-card.learn .big-icon{background:var(--blue-s);color:var(--blue-d)}
+.home-card.learn .go{color:var(--blue-d)}
+.home-card.game .big-icon{background:var(--teal-s);color:var(--teal-d)}
+.home-card.game .go{color:var(--teal-d)}
+.home-card.extra .big-icon{background:var(--amber-s);color:var(--amber-d)}
+.home-card.extra .go{color:var(--amber-d)}
+.home-card.table .big-icon{background:var(--violet-s);color:var(--violet-d)}
+.home-card.table .go{color:var(--violet-d)}
+
+/* المان‌های ریاضی و کارت‌های عدد */
+.numbox{
+  display:inline-flex;align-items:center;justify-content:center;gap:3px;
+  font-weight:800;letter-spacing:1px;direction:ltr;
+  background:var(--blue-s);border:1px solid #bfdbfe;border-radius:14px;
+  padding:6px 14px;color:var(--blue-d);
+}
+.numbox.lg{font-size:2rem;padding:9px 20px;border-radius:16px}
+.numbox.xl{font-size:2.8rem;padding:12px 26px;border-radius:20px;letter-spacing:3px}
+.numbox .dg{display:inline-block;padding:0 2px}
+.numbox .dg.ones{color:#fff;background:var(--pink);border-radius:8px;padding:0 5px}
+.numbox.tone-teal{background:var(--teal-s);border-color:#99f6e4;color:var(--teal-d)}
+.numbox.tone-amber{background:var(--amber-s);border-color:#fde68a;color:var(--amber-d)}
+.numbox.tone-violet{background:var(--violet-s);border-color:#e9d5ff;color:var(--violet-d)}
+.numbox.tone-pink{background:var(--pink-s);border-color:#fbcfe8;color:var(--pink-d)}
+
+.digits{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dgcard{
+  min-width:54px;height:70px;border-radius:15px;background:#fff;border:2px solid var(--amber);
+  color:var(--amber-d);font-weight:800;font-size:1.85rem;display:grid;place-items:center;
+  box-shadow:0 6px 16px -8px rgba(217,119,6,.5);direction:ltr;cursor:pointer;transition:all .15s;
+}
+.dgcard:hover{transform:translateY(-3px)}
+.dgcard.used{opacity:.25;pointer-events:none}
+.slot{
+  min-width:54px;height:70px;border-radius:15px;background:#fff;border:2px dashed #94a3b8;
+  display:grid;place-items:center;font-weight:800;font-size:1.85rem;color:var(--blue-d);direction:ltr;
+}
+.slot.empty{color:#cbd5e1}
+.slot.filled{border-style:solid;border-color:var(--blue);background:var(--blue-s)}
+
+.pkgs{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.pkg{text-align:center}
+.pkg .cap{font-size:.78rem;color:var(--muted);font-weight:700;margin-top:6px}
+.pkg .row{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+
+.moneyline{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;font-size:.95rem}
+.moneyline .box{border:1px solid var(--line);background:#fff;border-radius:12px;padding:6px 12px;font-weight:700;direction:ltr}
+.moneyline .eq{color:var(--muted);font-weight:800}
+.moneyline .rem{padding:6px 12px;border-radius:12px;font-weight:800;direction:ltr}
+.moneyline .rem.zero{background:var(--green-s);color:var(--green-d);border:1px solid #bbf7d0}
+.moneyline .rem.nz{background:var(--red-s);color:var(--red);border:1px solid #fecaca}
+
+.rule{
+  border-radius:18px;padding:15px 18px;font-weight:700;font-size:1rem;
+  border:1.5px solid transparent;display:flex;gap:12px;align-items:flex-start;
+}
+.rule .ic{flex:0 0 34px;width:34px;height:34px;border-radius:11px;display:grid;place-items:center}
+.rule.blue{background:var(--blue-s);border-color:#bfdbfe;color:var(--blue-d)}
+.rule.teal{background:var(--teal-s);border-color:#99f6e4;color:var(--teal-d)}
+.rule.amber{background:var(--amber-s);border-color:#fde68a;color:var(--amber-d)}
+.rule.violet{background:var(--violet-s);border-color:#e9d5ff;color:var(--violet-d)}
+.rule.pink{background:var(--pink-s);border-color:#fbcfe8;color:var(--pink-d)}
+.rule.green{background:var(--green-s);border-color:#bbf7d0;color:var(--green-d)}
+.rule small{display:block;font-weight:500;opacity:.9;font-size:.85rem;margin-top:4px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--line)}
+table.tbl{border-collapse:collapse;width:100%;min-width:500px;background:#fff;font-size:.94rem}
+table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:center}
+table.tbl th{background:var(--bg-2);font-weight:800;color:var(--ink-2);font-size:.86rem}
+table.tbl tr:last-child td{border-bottom:0}
+table.tbl td.num{direction:ltr;font-weight:800}
+
+.tag{display:inline-block;font-size:.76rem;padding:2px 10px;border-radius:999px;font-weight:800}
+.tag.yes{background:var(--green-s);color:var(--green-d)}
+.tag.no{background:var(--red-s);color:var(--red)}
+.tag.src{background:var(--amber-s);color:var(--amber-d)}
+
+/* سؤال و بازخورد */
+.q-box{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+.q-line{display:flex;gap:9px;align-items:flex-start;font-weight:800;margin-bottom:12px}
+.q-line .qmark{
+  flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:var(--amber-s);color:var(--amber-d);
+  display:grid;place-items:center;font-size:.92rem;font-weight:800;
+}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{
+  border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 16px;
+  font-size:.96rem;font-weight:600;cursor:pointer;color:var(--ink-2);
+  transition:all .15s ease;
+}
+.opt:hover{border-color:#94a3b8;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.opt.ok{border-color:var(--green);background:var(--green-s);color:var(--green-d);animation:pop .3s ease}
+.opt.bad{border-color:var(--red);background:var(--red-s);color:var(--red);animation:shake .35s ease}
+@keyframes pop{0%{transform:scale(.95)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.fb{display:none;margin-top:12px;border-radius:14px;padding:12px 15px;font-size:.95rem;animation:rise .3s ease}
+.fb.show{display:block}
+.fb.ok{background:var(--green-s);border:1px solid #86efac;color:var(--green-d)}
+.fb.bad{background:var(--amber-s);border:1px solid #fde68a;color:var(--amber-d)}
+.fb .fbh{display:flex;align-items:center;gap:7px;font-weight:800;margin-bottom:4px}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sol{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(0,0,0,.15);font-weight:500}
+.sol .step{display:block;margin-top:4px}
+
+.steps-reveal .step{display:none}
+.steps-reveal .step.on{display:flex;animation:rise .35s ease}
+
+.pick{
+  border:2px solid var(--line);background:#fff;border-radius:15px;min-width:88px;padding:10px 14px;
+  font-size:1.4rem;font-weight:800;cursor:pointer;direction:ltr;color:var(--ink-2);
+  transition:all .15s ease;
+}
+.pick:hover{transform:translateY(-2px);border-color:#94a3b8}
+.pick.sel{border-color:var(--teal);background:var(--teal-s);color:var(--teal-d);box-shadow:0 0 0 3px rgba(13,148,136,.15)}
+.pick.ok{border-color:var(--green);background:var(--green-s);color:var(--green-d)}
+.pick.bad{border-color:var(--red);background:var(--red-s);color:var(--red);animation:shake .35s ease}
+.pickgrid{display:flex;flex-wrap:wrap;gap:10px}
+.flip{perspective:1000px;cursor:pointer;height:170px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.flip .face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;border:1px solid var(--line);
+  display:grid;place-items:center;text-align:center;padding:16px;background:#fff;box-shadow:var(--shadow);
+}
+.flip .back{transform:rotateY(180deg);background:var(--blue-s);border-color:#bfdbfe}
+
+.grid100{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:500px;margin:10px auto 0}
+.grid100 button{
+  aspect-ratio:1;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:.82rem;font-weight:700;
+  cursor:pointer;color:var(--ink-2);direction:ltr;padding:0;transition:transform .1s ease;
+}
+.grid100 button:hover{transform:scale(1.1)}
+.grid100 button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.grid100 button.ok{background:var(--green-s);border-color:#bbf7d0;color:var(--green-d)}
+.grid100 button.miss{background:var(--red-s);border-color:#fecaca;color:var(--red)}
+
+/* بازی‌ها و نوار وضعیت */
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px}
+.game-card{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:10px;transition:all .2s ease;
+}
+.game-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(16,42,69,.35)}
+.game-card .gic{width:48px;height:48px;border-radius:15px;display:grid;place-items:center}
+.game-card h3{margin:0;font-size:1.05rem;font-weight:800}
+.game-card p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.7}
+.game-card .rowbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+
+.hud{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.hud .pill{
+  display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);
+  border-radius:999px;padding:5px 13px;font-size:.84rem;font-weight:700;color:var(--ink-2);
+}
+.hud .pill b{color:var(--blue-d)}
+.hud .pill.score b{color:var(--amber-d)}
+.hud .pill.streak b{color:var(--green-d)}
+
+.qprompt{font-size:1.15rem;font-weight:800;margin:4px 0 14px;line-height:1.9}
+.bigq{font-size:1.35rem}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;
+  border-radius:14px;padding:11px 22px;font-size:.96rem;font-weight:800;
+  background:linear-gradient(180deg,var(--blue),var(--blue-d));color:#fff;
+  box-shadow:0 10px 20px -8px rgba(37,99,235,.7);transition:all .15s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 26px -8px rgba(37,99,235,.85)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.ghost{background:#fff;color:var(--ink-2);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:var(--blue-s);border-color:#bfdbfe}
+.btn.teal{background:linear-gradient(180deg,var(--teal),var(--teal-d));box-shadow:0 10px 20px -8px rgba(13,148,136,.7)}
+.btn.amber{background:linear-gradient(180deg,var(--amber),var(--amber-d));box-shadow:0 10px 20px -8px rgba(217,119,6,.7)}
+.btn.small{padding:8px 15px;font-size:.86rem;border-radius:12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+.score-ring{width:140px;height:140px;margin:6px auto 10px;position:relative}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .txt{position:absolute;inset:0;display:grid;place-items:center;font-size:1.7rem;font-weight:900;direction:ltr}
+
+.stepdots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.stepdots button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:.74rem;font-weight:800;color:var(--muted);cursor:pointer;direction:ltr;padding:0}
+.stepdots button.done{background:var(--green-s);border-color:#bbf7d0;color:var(--green-d)}
+.stepdots button.cur{background:var(--blue);border-color:var(--blue);color:#fff}
+
+.watermark{
+  position:fixed;bottom:0;left:0;right:0;z-index:60;pointer-events:none;
+  display:flex;justify-content:center;padding:5px 8px 6px;
+  background:linear-gradient(0deg,rgba(240,245,252,.95),rgba(240,245,252,0));
+}
+.watermark span{
+  font-size:.76rem;font-weight:700;color:#1e40af;background:rgba(255,255,255,.88);
+  border:1px solid #bfdbfe;border-radius:999px;padding:3px 14px;backdrop-filter:blur(6px);
+}
+.toast{
+  position:fixed;bottom:42px;left:50%;transform:translateX(-50%) translateY(20px);z-index:80;
+  background:var(--ink);color:#fff;border-radius:12px;padding:9px 18px;font-size:.86rem;font-weight:700;
+  opacity:0;transition:all .25s ease;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.toast.show{opacity:1;transform:translateX(-50%)}
+
+/* مدال تأیید سفارشی (بدون استفاده از confirm) */
+.custom-modal{
+  position:fixed;inset:0;z-index:90;display:none;place-items:center;
+  background:rgba(16,42,69,.5);backdrop-filter:blur(4px);padding:14px;
+}
+.custom-modal.show{display:grid}
+.modal-box{background:#fff;border-radius:22px;padding:22px;max-width:380px;width:100%;text-align:center;box-shadow:var(--shadow)}
+
+.center{text-align:center}
+.note{font-size:.9rem;color:var(--muted);line-height:1.8}
+.bullets{margin:8px 0 0;padding-inline-start:20px}
+.bullets li{margin-bottom:5px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.mt{margin-top:14px}.mt-s{margin-top:8px}.mb{margin-bottom:14px}
+.pillrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-size:.78rem;font-weight:600;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.kv{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:7px 0;font-size:.95rem}
+.kv:last-child{border-bottom:0}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-inline-end:5px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <button class="brand" data-action="home">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="3" y="3" width="42" height="42" rx="12" fill="#eaf1fe" stroke="#bfdbfe"/>
+        <path d="M14 33 24 15l10 18" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="27" r="3.2" fill="#0d9488"/>
+      </svg>
+      <span>
+        <b>بخش‌پذیری | ریاضی ششم</b>
+        <small>طراحی شده توسط محمد حسین عربی آموزگار ششم</small>
+      </span>
+    </button>
+    <div class="navbtns">
+      <div id="header-user-badge" style="display:none" class="user-pill">
+        <span>👤</span><span id="header-user-name">دانش‌آموز</span>
+      </div>
+      <div id="header-score-badge" style="display:none" class="score-badge">
+        <span>⭐ امتیاز:</span><b id="header-user-score">۰</b>
+      </div>
+      <nav id="navbtns" style="display:inline-flex;gap:6px"></nav>
+    </div>
+  </div>
+  <div class="progressbar"><i id="pbar"></i></div>
+  <div class="progressmeta">
+    <span id="pmeta-label">صفحه ورود</span>
+    <span id="pmeta-value"></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ===================== صفحه اول: ورود دانش‌آموز ===================== -->
+  <section class="screen active" id="screen-welcome">
+    <div class="welcome-hero">
+      <div class="welcome-author-badge">
+        👨‍🏫 طراحی شده توسط محمد حسین عربی آموزگار ششم
+      </div>
+      <span class="kicker amber">کتاب ریاضی ششم دبستان — درس سوم فصل اول</span>
+      <h1>یادگیری و بازی‌های تعاملی بخش‌پذیری</h1>
+      <p style="max-width:620px;margin:8px auto;color:var(--muted);font-size:1.02rem">
+        سلام به دانش‌آموز کوشای پایه ششم! در این برنامه با روشی جذاب و پر از بازی،
+        قواعد بخش‌پذیری بر ۲، ۵، ۱۰، ۳، ۹ و ۶ را یاد می‌گیری و امتیاز جمع می‌کنی.
+      </p>
+
+      <div class="login-box">
+        <label class="input-label" for="student-name-input">نام و نام خانوادگی خود را بنویس:</label>
+        <input type="text" id="student-name-input" class="name-input" placeholder="مثلاً: علی احمدی" maxlength="35" autofocus autocomplete="name">
+        <button class="btn" style="width:100%;margin-top:14px;padding:13px" data-action="submit-name">
+          شروع یادگیری و بازی 🚀
+        </button>
+      </div>
+
+      <div class="pillrow" style="justify-content:center;margin-top:16px">
+        <span class="chip">✨ ۵ بازی آموزشی جذاب</span>
+        <span class="chip">📝 آزمون نهایی با کارنامه</span>
+        <span class="chip">🎯 تمرین‌های رسمی کتاب ریاضی</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== صفحه اصلی (داشبورد) ===================== -->
+  <section class="screen" id="screen-home">
+    <!-- بنر خوش‌آمدگویی و امتیاز دانش‌آموز -->
+    <div class="student-banner">
+      <div>
+        <h2 id="home-greeting">سلام دانش‌آموز عزیز! خوش اومدی 👋</h2>
+        <p>به بخش‌پذیری ریاضی ششم خوش اومدی — طراحی شده توسط محمد حسین عربی آموزگار ششم</p>
+        <button class="btn small ghost" style="margin-top:10px;color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.15)" data-action="change-name">
+          ✏️ ویرایش نام دانش‌آموز
+        </button>
+      </div>
+      <div class="student-banner-score">
+        <div class="val" id="banner-score-val">۰</div>
+        <div class="lbl">⭐ امتیاز کل کسب‌شده</div>
+      </div>
+    </div>
+
+    <!-- بخش‌های اصلی ۴ گانه -->
+    <div class="home-grid">
+      <button class="home-card learn" data-action="open-lesson">
+        <div class="big-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7h7M8 11h5"/>
+          </svg>
+        </div>
+        <h2>یادگیری درس (اسلایدها)</h2>
+        <p>آموزش گام‌به‌گام و مصور با بسته‌های صدتایی، ده‌تایی، باقیمانده‌ها و پرسش‌های متن کتاب درسی.</p>
+        <span class="go">ورود به درس
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 6l-6 6 6 6"/></svg>
+        </span>
+      </button>
+
+      <button class="home-card game" data-action="open-games">
+        <div class="big-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="6" width="19" height="13" rx="4"/><path d="M7 12h3M8.5 10.5v3M15 11.5h.01M17 13.5h.01"/>
+          </svg>
+        </div>
+        <h2>۵ بازی آموزشی جذاب</h2>
+        <p>بازی‌های بخش‌پذیری، رقم یکان، جمع رقم‌ها، کارت‌های عددی ۹، ۰، ۵ و کارآگاه بخش‌پذیری همراه با امتیاز.</p>
+        <span class="go">شروع بازی‌ها
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 6l-6 6 6 6"/></svg>
+        </span>
+      </button>
+
+      <button class="home-card extra" data-action="open-exam">
+        <div class="big-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 4h8a2 2 0 0 1 2 2v14l-6-3-6 3V6a2 2 0 0 1 2-2z"/><path d="M9.5 9.5l1.8 1.8 3.2-3.2"/>
+          </svg>
+        </div>
+        <h2>آزمون نهایی جامع</h2>
+        <p>۱۰ سؤال تستی و تعاملی از کل مباحث درس همراه با درصد، کارنامه و پیشنهاد مباحث نیازمند مرور.</p>
+        <span class="go">شروع آزمون
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 6l-6 6 6 6"/></svg>
+        </span>
+      </button>
+
+      <button class="home-card table" data-action="open-table">
+        <div class="big-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3.5" width="18" height="17" rx="3"/><path d="M3 9h18M9 9v11.5M3 15h18"/>
+          </svg>
+        </div>
+        <h2>جدول مقایسه و مرور قواعد</h2>
+        <p>خلاصه همه قواعد بخش‌پذیری بر ۲، ۵، ۱۰، ۳، ۹ و ۶ در یک نگاه با تمرین مقایسه‌ای «یکان یا جمع رقم‌ها».</p>
+        <span class="go">مشاهده جدول
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 6l-6 6 6 6"/></svg>
+        </span>
+      </button>
+    </div>
+
+    <!-- کارت پیشرفت و امتیازات -->
+    <div class="card mt">
+      <div class="card-head">
+        <span class="dot" style="background:var(--green)"></span>
+        <h3>کارنامه و وضعیت پیشرفت دانش‌آموز</h3>
+      </div>
+      <div id="home-progress"></div>
+      <div class="actions">
+        <button class="btn small ghost" data-action="open-reset-modal">پاک کردن سوابق و شروع مجدد</button>
+        <button class="btn small ghost" data-action="toggle-sound" id="btn-sound">صدا: روشن</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== یادگیری درس ===================== -->
+  <section class="screen" id="screen-lesson">
+    <div class="pillrow mb">
+      <span class="kicker" id="lesson-step-kicker">مرحله ۱</span>
+      <span class="tag src hide" id="lesson-src-tag">تمرین کتاب</span>
+    </div>
+    <h2 class="screen-title" id="lesson-title">—</h2>
+    <div id="lesson-stage"></div>
+    <div class="card tight mt">
+      <div class="stepdots" id="lesson-dots"></div>
+    </div>
+  </section>
+
+  <!-- ===================== بازی‌ها ===================== -->
+  <section class="screen" id="screen-games">
+    <span class="kicker teal">بازی‌های تعاملی</span>
+    <h2 class="screen-title">بازی کن، امتیاز بگیر و ماهر شو!</h2>
+    <p class="screen-sub">هر بازی سؤالات طبقه‌بندی‌شده دارد و امتیازهای کسب‌شده مستقیم به امتیاز کل اضافه می‌شود.</p>
+    <div class="games-grid" id="games-grid"></div>
+  </section>
+
+  <!-- ===================== اجرای بازی ===================== -->
+  <section class="screen" id="screen-play">
+    <div class="hud" id="play-hud"></div>
+    <h2 class="screen-title" id="play-title">—</h2>
+    <div id="play-stage"></div>
+    <div class="actions" id="play-actions"></div>
+  </section>
+
+  <!-- ===================== نتیجه بازی / آزمون ===================== -->
+  <section class="screen" id="screen-result">
+    <div id="result-stage"></div>
+  </section>
+
+  <!-- ===================== جدول مرور ===================== -->
+  <section class="screen" id="screen-table">
+    <span class="kicker violet">مرور سریع</span>
+    <h2 class="screen-title">جدول طلایی قواعد بخش‌پذیری</h2>
+    <p class="screen-sub">همه قواعد در یک قاب مرتب شده‌اند تا همیشه یادت بماند.</p>
+    <div id="table-stage"></div>
+  </section>
+</main>
+
+<!-- مدال سفارشی برای تأیید پاک کردن سوابق بدون confirm -->
+<div class="custom-modal" id="reset-modal">
+  <div class="modal-box">
+    <h3 style="margin-top:0;font-size:1.15rem;color:var(--red)">پاک کردن تمام امتیازات؟</h3>
+    <p class="note" style="margin-bottom:20px">آیا مطمئن هستید که می‌خواهید تمام سوابق یادگیری و امتیازهای کسب‌شده را پاک کنید؟</p>
+    <div class="actions" style="justify-content:center">
+      <button class="btn small" style="background:var(--red)" data-action="confirm-reset">بله، پاک کن</button>
+      <button class="btn small ghost" data-action="close-modal">انصراف</button>
+    </div>
+  </div>
+</div>
+
+<div class="watermark"><span>طراحی شده توسط محمد حسین عربی آموزگار ششم</span></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================================
+   موتور برنامه، ابزارها و داده‌های درسی
+   طراحی شده توسط محمد حسین عربی آموزگار ششم
+   ========================================================================= */
+
+var STORE_KEY = 'arabi_sheshom_bakhshpaziri_v2';
+
+var UTIL = (function () {
+  function faToEn(s) { return String(s).replace(/[\u06F0-\u06F9]/g, function (d) { return String(d.charCodeAt(0) - 0x06F0); }); }
+  function enToFa(s) { return String(s).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x06F0 + (+d)); }); }
+
+  function numInline(n, opt) {
+    opt = opt || {};
+    var s = enToFa(String(n)), ones = s.length - 1, out = '<span class="numbox' + (opt.cls ? ' ' + opt.cls : '') + '">';
+    for (var i = 0; i < s.length; i++) {
+      var k = (i === ones) ? 'ones' : (opt.highlight ? 'hi' : '');
+      out += '<span class="dg' + (k ? ' ' + k : '') + '">' + s[i] + '</span>';
+    }
+    return out + '</span>';
+  }
+  function sumDigits(n) { return String(n).split('').reduce(function (a, b) { return a + (+b); }, 0); }
+  function faNumSum(n, sep) {
+    var s = enToFa(String(n)).split(''), t = '';
+    for (var i = 0; i < s.length; i++) t += s[i] + (i < s.length - 1 ? (sep || ' + ') : '');
+    return t;
+  }
+  function moneyLine(n, d) {
+    var r = n % d;
+    return '<div class="moneyline">' +
+      '<span class="box">' + enToFa(n) + ' ÷ ' + enToFa(d) + '</span>' +
+      '<span class="eq">⟶</span>' +
+      '<span class="rem ' + (r === 0 ? 'zero' : 'nz') + '">باقی‌مانده: ' + enToFa(r) + '</span>' +
+      '<span class="eq">' + (r === 0 ? 'بخش‌پذیر است' : 'بخش‌پذیر نیست') + '</span>' +
+      '</div>';
+  }
+  function remainderTable(from, to, d) {
+    var head = '<tr><th>عدد</th>', body = '<tr><th>باقی‌مانده بر ' + enToFa(d) + '</th>';
+    for (var n = from; n <= to; n++) {
+      var r = n % d;
+      head += '<th>' + enToFa(n) + '</th>';
+      body += '<td class="num"' + (r === 0 ? ' style="color:var(--green-d)"' : '') + '>' + enToFa(r) + '</td>';
+    }
+    return '<div class="tbl-wrap"><table class="tbl" style="min-width:' + (80 + (to - from + 1) * 54) + 'px"><thead>' +
+      head + '</tr></thead><tbody>' + body + '</tr></tbody></table></div>';
+  }
+  function pack100(color, edge) {
+    return '<svg width="60" height="90" viewBox="0 0 70 104" aria-hidden="true">' +
+      '<rect x="4" y="4" width="62" height="96" rx="8" fill="' + color + '" stroke="' + edge + '"/>' +
+      '<text x="35" y="60" text-anchor="middle" font-size="22" font-weight="800" fill="#fff" font-family="Vazirmatn">۱۰۰</text></svg>';
+  }
+  function pack10(color, edge) {
+    return '<svg width="40" height="52" viewBox="0 0 46 58" aria-hidden="true">' +
+      '<rect x="3" y="3" width="40" height="52" rx="7" fill="' + color + '" stroke="' + edge + '"/>' +
+      '<text x="23" y="37" text-anchor="middle" font-size="17" font-weight="800" fill="#fff" font-family="Vazirmatn">۱۰</text></svg>';
+  }
+  function packUnit(color) {
+    return '<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="4" fill="' + color + '"/></svg>';
+  }
+  function groupOf(caption, inner) {
+    return '<div class="pkg"><div class="row">' + inner + '</div><div class="cap">' + caption + '</div></div>';
+  }
+  function packages(h, t, o, kind) {
+    var c = (kind === 'cookie')
+      ? { big: '#8fc98a', bigE: '#4e8f4a', sm: '#f0c078', smE: '#b06d05', un: '#3aa3d8' }
+      : { big: '#5b8ada', bigE: '#1d55ab', sm: '#e9b23f', smE: '#b06d05', un: '#e07a3f' };
+    var s = '', i;
+    if (h > 0) { var a = ''; for (i = 0; i < h; i++) a += pack100(c.big, c.bigE); s += groupOf(enToFa(h) + ' صدتایی', a); }
+    if (t > 0) { var b = ''; for (i = 0; i < t; i++) b += pack10(c.sm, c.smE); s += groupOf(enToFa(t) + ' ده‌تایی', b); }
+    if (o > 0) { var u = ''; for (i = 0; i < o; i++) u += packUnit(c.un); s += groupOf(enToFa(o) + ' یکی', u); }
+    return '<div class="pkgs">' + s + '</div>';
+  }
+  function ruleBox(tone, icon, text, sub) {
+    return '<div class="rule ' + tone + '"><span class="ic">' + icon + '</span><span>' + text +
+      (sub ? '<small>' + sub + '</small>' : '') + '</span></div>';
+  }
+  function table(headers, rows) {
+    var h = '<tr>' + headers.map(function (x) { return '<th>' + x + '</th>'; }).join('') + '</tr>';
+    var b = rows.map(function (r) {
+      return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
+    }).join('');
+    return '<div class="tbl-wrap"><table class="tbl"><thead>' + h + '</thead><tbody>' + b + '</tbody></table></div>';
+  }
+  return {
+    faToEn: faToEn, enToFa: enToFa, numInline: numInline,
+    sumDigits: sumDigits, faNumSum: faNumSum, moneyLine: moneyLine,
+    remainderTable: remainderTable, packages: packages, ruleBox: ruleBox, table: table
+  };
+})();
+var ICONS = {
+  check: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4.5 4.5L19 7"/></svg>',
+  divide: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h9M4 12h15M4 16h11"/></svg>',
+  onesDigit: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="6" width="16" height="12" rx="3"/><path d="M15 6v12" stroke-width="3"/></svg>',
+  sum: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h12l-6 7 6 7H6"/></svg>',
+  link: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 15l6-6M8 8H6a4 4 0 0 0 0 8h2M16 8h2a4 4 0 0 1 0 8h-2"/></svg>',
+  star: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l2.4 5 5.4.8-3.9 3.8.9 5.4L12 16.5 7.2 19l.9-5.4L4.2 9.8 9.6 9z"/></svg>',
+  note: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h9l4 4v12H6z"/><path d="M9 9h5M9 13h6M9 17h3"/></svg>'
+};
+
+var State = {
+  screen: 'welcome',
+  studentName: '',
+  data: {
+    progress: { lesson: { seen: {}, qs: {} }, games: {}, exam: null },
+    totalScore: 0,
+    sound: true
+  },
+  load: function () {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        var d = JSON.parse(raw);
+        if (d) {
+          if (d.studentName) this.studentName = d.studentName;
+          if (d.progress) this.data.progress = Object.assign(this.data.progress, d.progress);
+          if (typeof d.totalScore === 'number') this.data.totalScore = d.totalScore;
+          if (typeof d.sound === 'boolean') this.data.sound = d.sound;
+        }
+      }
+    } catch (e) {}
+  },
+  save: function () {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        studentName: this.studentName,
+        progress: this.data.progress,
+        totalScore: this.data.totalScore,
+        sound: this.data.sound
+      }));
+    } catch (e) {}
+  },
+  addScore: function (pts) {
+    this.data.totalScore = (this.data.totalScore || 0) + pts;
+    this.save();
+  },
+  reset: function () {
+    this.data.progress = { lesson: { seen: {}, qs: {} }, games: {}, exam: null };
+    this.data.totalScore = 0;
+    this.save();
+  }
+};
+var Sound = {
+  ctx: null,
+  play: function (kind) {
+    if (!State.data.sound) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!this.ctx) this.ctx = new AC();
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      var t = this.ctx.currentTime;
+      var seq = {
+        ok: [[680, 0], [880, 0.09]],
+        no: [[320, 0], [220, 0.12]],
+        win: [[620, 0], [820, 0.08], [1150, 0.18]],
+        tick: [[520, 0]]
+      }[kind] || [[600, 0]];
+      for (var i = 0; i < seq.length; i++) {
+        var o = this.ctx.createOscillator(), g = this.ctx.createGain();
+        o.type = 'sine'; o.frequency.value = seq[i][0];
+        g.gain.setValueAtTime(0.0001, t + seq[i][1]);
+        g.gain.exponentialRampToValueAtTime(0.12, t + seq[i][1] + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + seq[i][1] + 0.25);
+        o.connect(g); g.connect(this.ctx.destination);
+        o.start(t + seq[i][1]); o.stop(t + seq[i][1] + 0.3);
+      }
+    } catch (e) {}
+  }
+};
+
+/* مپ قوانین و کتاب */
+var BOOK = {
+  ex1p12: [127, 46, 358, 93, 5532, 74, 7000],
+  ex2p12: [552, 11115, 134786052, 9995, 683, 80],
+  ex5p13: [90, 105, 70, 34, 85],
+  kark3: [23, 3006, 150, 19, 93, 84, 79],
+  kark3deg9: [919, 2136, 198, 87, 73, 17, 54],
+  ex2p15: [232, 7000, 58, 227, 105, 96],
+  ex3p15: [199, 50112, 69, 225, 207, 36]
+};
+
+var QUESTIONS = {};
+var UI = {
+  q: function (id) {
+    var q = QUESTIONS[id];
+    if (!q) return '';
+    var opts = q.options.map(function (o, i) { return '<button class="opt" data-opt="' + i + '">' + o.t + '</button>'; }).join('');
+    return '<div class="q-box" data-qid="' + id + '">' +
+      '<div class="q-line"><span class="qmark">؟</span><span>' + q.text + '</span></div>' +
+      (q.extra || '') +
+      '<div class="opts">' + opts + '</div>' +
+      '<div class="fb" data-fb></div></div>';
+  },
+  rulesTable: function () {
+    var rows = [
+      ['۲', 'رقم یکان: ۰، ۲، ۴، ۶، ۸ (زوج)', '۳۵۸ ⟶ یکان ۸ ⟶ بخش‌پذیر'],
+      ['۵', 'رقم یکان: ۰ یا ۵', '۹۹۹۵ ⟶ یکان ۵ ⟶ بخش‌پذیر | ۳۷۸ ⟶ یکان ۸ ⟶ بخش‌پذیر نیست'],
+      ['۱۰', 'رقم یکان: صفر (هم بر ۲ و هم بر ۵)', '۷۰۰۰ و ۹۰ و ۷۰ ⟶ بخش‌پذیر | ۵۵۲ ⟶ بخش‌پذیر نیست'],
+      ['۳', 'جمع رقم‌ها بخش‌پذیر بر ۳ باشد', '۲۸۲ ⟶ ۲+۸+۲ = ۱۲ ⟶ بخش‌پذیر'],
+      ['۹', 'جمع رقم‌ها بخش‌پذیر بر ۹ باشد', '۱۹۸ ⟶ ۱+۹+۸ = ۱۸ ⟶ بخش‌پذیر'],
+      ['۶', 'هم بر ۲ و هم بر ۳ بخش‌پذیر باشد', '۲۴۶ ⟶ یکان زوج و جمع رقم‌ها ۱۲ ⟶ بر ۶ بخش‌پذیر']
+    ];
+    return UTIL.table(['بر چند؟', 'قاعده در یک نگاه', 'مثال کتاب'],
+      rows.map(function (r) { return ['<b style="color:var(--blue-d)">' + r[0] + '</b>', r[1], '<span class="num" style="direction:rtl">' + r[2] + '</span>']; }));
+  },
+  flipCard: function (front, back) {
+    return '<div class="flip" onclick="W.flip(this)"><div class="flip-in">' +
+      '<div class="face"><b>' + front + '</b></div>' +
+      '<div class="face back">' + back + '</div></div></div>';
+  }
+};
+
+/* ابزارهای تعاملی پرسش و ویجت‌ها */
+var W = {
+  flip: function (el) { el.classList.toggle('on'); Sound.play('tick'); },
+  reveal: function (btn) {
+    var box = btn.closest('.steps-reveal');
+    if (!box) return;
+    var steps = box.querySelectorAll('.step');
+    for (var i = 0; i < steps.length; i++) {
+      if (!steps[i].classList.contains('on')) {
+        steps[i].classList.add('on');
+        Sound.play('tick');
+        if (i === steps.length - 1) btn.disabled = true;
+        return;
+      }
+    }
+    btn.disabled = true;
+  },
+  pick: function (btn) {
+    if (btn.classList.contains('ok') || btn.classList.contains('bad')) return;
+    btn.classList.toggle('sel');
+    Sound.play('tick');
+  },
+  checkPicks: function (btn) {
+    var gid = btn.getAttribute('data-group');
+    var wrap = document.querySelector('[data-pickgroup="' + gid + '"]');
+    if (!wrap) return;
+    var target = +wrap.getAttribute('data-target');
+    var mode = wrap.getAttribute('data-mode');
+    var items = wrap.querySelectorAll('.pick');
+    var isHit = function (v) { return mode === 'and25' ? (v % 2 === 0 && v % 5 === 0) : (v % target === 0); };
+    var right = 0, wrong = 0, missed = 0;
+    for (var i = 0; i < items.length; i++) {
+      var v = +UTIL.faToEn(items[i].getAttribute('data-v'));
+      var shouldPick = isHit(v);
+      if (items[i].classList.contains('sel') && shouldPick) { items[i].classList.add('ok'); right++; }
+      else if (items[i].classList.contains('sel') && !shouldPick) { items[i].classList.add('bad'); wrong++; }
+      else if (!items[i].classList.contains('sel') && shouldPick) { missed++; }
+    }
+    var fb = document.querySelector('[data-fbtarget="' + gid + '"]');
+    var ok = (wrong === 0 && missed === 0);
+    if (fb) {
+      fb.className = 'fb show ' + (ok ? 'ok' : 'bad');
+      var ruleName = mode === 'and25' ? 'هم بر ۲ و هم بر ۵' : 'بر ' + UTIL.enToFa(target);
+      var good = [];
+      for (var k2 = 0; k2 < items.length; k2++) {
+        var v2 = +UTIL.faToEn(items[k2].getAttribute('data-v'));
+        if (isHit(v2)) good.push(UTIL.enToFa(v2));
+      }
+      if (ok) {
+        fb.innerHTML = '<div class="fbh">' + ICONS.check + ' آفرین! همه را درست پیدا کردی.</div>' +
+          'عددهای بخش‌پذیر ' + ruleName + ': <b>' + good.join(' ، ') + '</b>';
+      } else {
+        fb.innerHTML = '<div class="fbh">' + ICONS.note + ' دقت کن!</div>' +
+          (wrong ? 'بعضی اعداد نادرست انتخاب شده‌اند. ' : '') +
+          (missed ? UTIL.enToFa(missed) + ' عدد جا مانده است. ' : '') +
+          '<div class="sol">عددهای درست: <b>' + good.join(' ، ') + '</b></div>';
+      }
+    }
+    if (ok) {
+      Sound.play('ok');
+      btn.disabled = true;
+      State.addScore(10);
+      App.toast('+۱۰ امتیاز!');
+    } else Sound.play('no');
+  },
+  q: function (btn) {
+    var box = btn.closest('[data-qid]'), qid = box.getAttribute('data-qid'), q = QUESTIONS[qid];
+    var idx = +btn.getAttribute('data-opt');
+    var fb = box.querySelector('[data-fb]');
+    if (btn.classList.contains('ok') || box.getAttribute('data-solved') === '1') return;
+    var chosen = q.options[idx];
+    if (chosen.ok) {
+      box.setAttribute('data-solved', '1');
+      btn.classList.add('ok');
+      box.querySelectorAll('.opt').forEach(function(o){o.disabled=true});
+      fb.className = 'fb show ok';
+      fb.innerHTML = '<div class="fbh">' + ICONS.check + ' درست است!</div>' + (chosen.exp ? '<div>' + chosen.exp + '</div>' : '');
+      Sound.play('ok');
+      State.addScore(5);
+      App.toast('+۵ امتیاز تمرین!');
+      App.onQuestionCorrect(qid);
+    } else {
+      btn.classList.add('bad');
+      Sound.play('no');
+      fb.className = 'fb show bad';
+      fb.innerHTML = '<div class="fbh">' + ICONS.note + ' نه، این‌طور نیست.</div>' + (chosen.exp ? '<div>' + chosen.exp + '</div>' : '');
+    }
+  }
+};
+/* ثبت سؤالات درس کتاب ریاضی ششم */
+Object.assign(QUESTIONS, {
+  q_s1_1: {
+    text: 'آیا در تقسیم یک بسته‌ی صدتایی شکلات بین ۵ نفر، شکلاتی باقی می‌ماند؟',
+    options: [
+      { t: 'نه، باقی‌مانده صفر است', ok: true, exp: '۱۰۰ ÷ ۵ = ۲۰ و باقی‌مانده صفر است.' },
+      { t: 'بله، باقی می‌ماند', exp: '۱۰۰ به ۵ قسمت مساوی ۲۰ تایی تقسیم می‌شود.' }
+    ]
+  },
+  q_s1_2: {
+    text: 'در تقسیم یک بسته‌ی صدتایی شکلات بین ۲ نفر چطور؟',
+    options: [
+      { t: 'نه، باقی‌مانده صفر است', ok: true, exp: '۱۰۰ ÷ ۲ = ۵۰ و باقی‌مانده صفر است.' },
+      { t: 'بله، ۵۰ شکلات باقی می‌ماند', exp: '۵۰ خارج قسمت است و باقی‌مانده صفر است.' }
+    ]
+  },
+  q_s2_1: {
+    text: 'رقم یکان عدد ۳۷۸ چند است و آیا بر ۲ بخش‌پذیر است؟',
+    options: [
+      { t: 'یکان ۸ است و بر ۲ بخش‌پذیر است', ok: true, exp: 'چون ۸ زوج است، پس کل عدد بر ۲ بخش‌پذیر است.' },
+      { t: 'یکان ۷ است و بخش‌پذیر نیست', exp: 'رقم یکان آخرین رقم سمت راست یعنی ۸ است.' }
+    ]
+  },
+  q_s3_1: {
+    text: 'چرا عدد ۳۷۸ بر ۵ بخش‌پذیر نیست؟',
+    options: [
+      { t: 'چون رقم یکانش ۸ است و ۰ یا ۵ نیست', ok: true, exp: 'عددی بر ۵ بخش‌پذیر است که یکانش ۰ یا ۵ باشد.' },
+      { t: 'چون زوج است', exp: 'زوج بودن مانع بخش‌پذیری بر ۵ نیست (مثلاً ۲۰ یا ۷۰).' }
+    ]
+  },
+  q_s4_1: {
+    text: 'عددی که هم بر ۲ و هم بر ۵ بخش‌پذیر است، حتماً رقم یکانش چیست؟',
+    options: [
+      { t: 'حتماً صفر است', ok: true, exp: 'چون باید هم زوج باشد و هم ۰ یا ۵، پس فقط صفر ممکن است.' },
+      { t: 'می‌تواند ۵ باشد', exp: 'اگر ۵ باشد بر ۲ بخش‌پذیر نیست.' }
+    ]
+  },
+  q_s5_1: {
+    text: 'جمع رقم‌های عدد ۲۸۲ چند است و آیا بر ۳ بخش‌پذیر است؟',
+    options: [
+      { t: '۲+۸+۲ = ۱۲ ⟶ بر ۳ بخش‌پذیر است', ok: true, exp: '۱۲ ÷ ۳ = ۴ با باقیمانده صفر.' },
+      { t: '۲+۸+۲ = ۱۰ ⟶ بخش‌پذیر نیست', exp: 'جمع رقم‌ها ۱۲ می‌شود نه ۱۰.' }
+    ]
+  },
+  q_s6_1: {
+    text: 'آیا عدد ۱۹۸ بر ۹ بخش‌پذیر است؟',
+    options: [
+      { t: 'بله؛ چون ۱+۹+۸ = ۱۸ و ۱۸ بر ۹ بخش‌پذیر است', ok: true, exp: '۱۸ ÷ ۹ = ۲ بدون باقی‌مانده.' },
+      { t: 'نه؛ چون عدد فرد نیست', exp: 'قاعده ۹ مربوط به جمع ارقام است.' }
+    ]
+  },
+  q_s7_1: {
+    text: 'چرا عدد ۲۴۶ بر ۶ بخش‌پذیر است؟',
+    options: [
+      { t: 'چون هم بر ۲ (یکان زوج) و هم بر ۳ (جمع رقم ۱۲) بخش‌پذیر است', ok: true, exp: '۶ = ۲ × ۳ ؛ پس هر دو شرط برقرار است.' },
+      { t: 'فقط چون یکانش ۶ است', exp: 'یکان ۶ به تنهایی دلیل بخش‌پذیری بر ۶ نیست (مثلاً ۱۶).' }
+    ]
+  }
+});
+
+/* اسلایدهای مرحله‌ای */
+var SLIDES = [
+  {
+    id:'s1', title:'بخش‌پذیری یعنی چه؟', kicker:'مرحله ۱ · مفهوم باقی‌مانده', src:true,
+    render: function(){
+      return UTIL.ruleBox('blue', ICONS.divide,
+        'اگر در یک تقسیم، باقی‌مانده <b>صفر</b> شود، می‌گوییم مقسوم بر مقسوم‌علیه <b>بخش‌پذیر</b> است.',
+        'یعنی می‌توان بدون هیچ اضافه یا کم‌آوردنی آن را به طور مساوی تقسیم کرد.')
+        + '<div class="card"><span class="kicker amber">فعالیت کتاب — صفحه‌ی ۱۲</span>'
+        + '<div class="card-head"><span class="dot"></span><h3>بسته‌های شکلات صدتایی و ده‌تایی</h3></div>'
+        + UTIL.packages(1, 1, 0)
+        + '<p class="note">یک بسته ۱۰۰ تایی و یک بسته ۱۰ تایی را بررسی می‌کنیم:</p>'
+        + UI.q('q_s1_1') + UI.q('q_s1_2') + '</div>';
+    }
+  },
+  {
+    id:'s2', title:'بخش‌پذیری بر ۲', kicker:'مرحله ۲ · قاعده عدد ۲', src:true,
+    render: function(){
+      return '<div class="card">'
+        + UTIL.ruleBox('blue', ICONS.onesDigit, 'عددی بر ۲ بخش‌پذیر است که رقم یکان آن <b>۰، ۲، ۴، ۶ یا ۸</b> (زوج) باشد.', 'صدتایی‌ها و ده‌تایی‌ها همیشه بر ۲ بخش‌پذیرند؛ بنابراین فقط رقم یکان تصمیم می‌گیرد!')
+        + '<div class="center mt">' + UTIL.numInline(378, {cls:'xl'}) + '</div>'
+        + '<p class="note center mt-s">در عدد ۳۷۸، صدگان ۳ و دهگان ۷ بر ۲ بخش‌پذیرند و رقم یکان ۸ هم زوج است.</p>'
+        + UI.q('q_s2_1') + '</div>'
+        + '<div class="card"><div class="card-head"><span class="dot" style="background:var(--teal)"></span><h3>باقی‌مانده تقسیم اعداد بر ۲</h3></div>'
+        + UTIL.remainderTable(370, 379, 2)
+        + '<p class="note mt-s">باقی‌مانده تقسیم هر عددی بر ۲، فقط می‌تواند <b>۰</b> (بخش‌پذیر) یا <b>۱</b> (فرد) باشد.</p></div>';
+    }
+  },
+  {
+    id:'s3', title:'بخش‌پذیری بر ۵', kicker:'مرحله ۳ · قاعده عدد ۵', src:true,
+    render: function(){
+      return '<div class="card">'
+        + UTIL.ruleBox('pink', ICONS.onesDigit, 'عددی بر ۵ بخش‌پذیر است که رقم یکان آن <b>۰ یا ۵</b> باشد.', 'صدتایی‌ها و ده‌تایی‌ها همیشه بر ۵ بخش‌پذیرند.')
+        + '<div class="center mt">' + UTIL.numInline(378, {cls:'xl'}) + '</div>'
+        + UTIL.moneyLine(378, 5)
+        + UI.q('q_s3_1') + '</div>'
+        + '<div class="card"><div class="card-head"><span class="dot" style="background:var(--pink)"></span><h3>باقی‌مانده تقسیم بر ۵</h3></div>'
+        + UTIL.remainderTable(370, 379, 5) + '</div>';
+    }
+  },
+  {
+    id:'s4', title:'بخش‌پذیری بر ۱۰', kicker:'مرحله ۴ · قاعده عدد ۱۰', src:true,
+    render: function(){
+      return '<div class="card">'
+        + UTIL.ruleBox('violet', ICONS.link, 'عددی بر ۱۰ بخش‌پذیر است که رقم یکان آن <b>صفر</b> باشد.', 'چون ۱۰ = ۲ × ۵، عددی که هم بر ۲ و هم بر ۵ بخش‌پذیر باشد حتماً بر ۱۰ هم بخش‌پذیر است.')
+        + '<div class="pillrow mt" style="justify-content:center">'
+        + UTIL.numInline(7000, {cls:'tone-violet'}) + UTIL.numInline(90, {cls:'tone-violet'}) + UTIL.numInline(70, {cls:'tone-violet'})
+        + '</div>'
+        + UI.q('q_s4_1') + '</div>';
+    }
+  },
+  {
+    id:'s5', title:'بخش‌پذیری بر ۳', kicker:'مرحله ۵ · قاعده جمع رقم‌ها', src:true,
+    render: function(){
+      return '<div class="card">'
+        + UTIL.ruleBox('amber', ICONS.sum, 'عددی بر ۳ بخش‌پذیر است که <b>جمع رقم‌های آن</b> بر ۳ بخش‌پذیر باشد.', 'مثال کتاب: در ۲۸۲ جلد کتاب، ۲+۸+۲ = ۱۲ و چون ۱۲ بر ۳ بخش‌پذیر است، کل کتاب‌ها بدون باقی‌مانده تقسیم می‌شوند.')
+        + '<div class="center mt"><span class="numbox lg">۲۸۲ ⟶ ۲ + ۸ + ۲ = ۱۲</span></div>'
+        + UI.q('q_s5_1') + '</div>';
+    }
+  },
+  {
+    id:'s6', title:'بخش‌پذیری بر ۹', kicker:'مرحله ۶ · قاعده عدد ۹', src:true,
+    render: function(){
+      return '<div class="card">'
+        + UTIL.ruleBox('violet', ICONS.sum, 'عددی بر ۹ بخش‌پذیر است که <b>جمع رقم‌های آن</b> بر ۹ بخش‌پذیر باشد.', 'مثال: ۱۹۸ ⟶ ۱ + ۹ + ۸ = ۱۸ و چون ۱۸ بر ۹ بخش‌پذیر است، پس ۱۹۸ بر ۹ بخش‌پذیر است.')
+        + '<div class="center mt"><span class="numbox lg">۱۹۸ ⟶ ۱ + ۹ + ۸ = ۱۸</span></div>'
+        + UI.q('q_s6_1') + '</div>';
+    }
+  },
+  {
+    id:'s7', title:'بخش‌پذیری بر ۶', kicker:'مرحله ۷ · ارتباط با ۲ و ۳', src:true,
+    render: function(){
+      return '<div class="card">'
+        + UTIL.ruleBox('green', ICONS.link, 'عددی بر ۶ بخش‌پذیر است که <b>هم بر ۲ و هم بر ۳</b> بخش‌پذیر باشد.', 'چون ۶ = ۲ × ۳ است؛ یعنی عدد هم باید زوج باشد و هم جمع رقم‌هایش مضرب ۳ باشد.')
+        + '<div class="center mt"><span class="numbox lg">۲۴۶ ⟶ زوج است و ۲+۴+۶ = ۱۲</span></div>'
+        + UI.q('q_s7_1') + '</div>';
+    }
+  }
+];
+/* ابزارهای ویجت‌های تعاملی اسلایدها */
+var WIDGETS = {
+  s7a1: { caption: 'الف) ۲۴▢ بر ۳ بخش‌پذیر باشد.', prefix: '24', place: 'ones', valid: function(n){return n%3===0;}, ok:'۲۴۰، ۲۴۳، ۲۴۶ و ۲۴۹ همگی درست‌اند.' },
+  ex4a: { caption: 'الف) ۳۱▢ بر ۵ بخش‌پذیر باشد.', prefix: '31', place: 'ones', valid: function(n){return n%5===0;}, ok:'۳۱۰ و ۳۱۵ درست هستند.' }
+};
+W.slotState = {};
+W.dig = function(id, d){
+  var st = W.slotState[id] || [];
+  if (st.length >= 1) st = [];
+  st.push(String(d));
+  W.slotState[id] = st;
+  W.paint(id);
+  Sound.play('tick');
+};
+W.slotClear = function(id){ W.slotState[id] = []; W.paint(id); };
+W.paint = function(id){
+  var cfg = WIDGETS[id], st = W.slotState[id] || [];
+  var wrap = document.querySelector('[data-slotw="' + id + '"]');
+  if (!wrap) return;
+  var boxes = ['<span class="slot filled" style="background:#fff">' + UTIL.enToFa(cfg.prefix) + '</span>',
+    '<span class="slot ' + (st.length ? 'filled' : 'empty') + '">' + (st.length ? UTIL.enToFa(st[0]) : '▢') + '</span>'];
+  wrap.querySelector('[data-slotboxes]').innerHTML = boxes.join('');
+  wrap.querySelector('[data-slotcheck]').disabled = (st.length === 0);
+};
+W.checkSlot = function(id){
+  var cfg = WIDGETS[id], st = W.slotState[id] || [];
+  var wrap = document.querySelector('[data-slotw="' + id + '"]');
+  var num = +(String(cfg.prefix) + st.join(''));
+  var ok = cfg.valid(num);
+  var fb = wrap.querySelector('[data-slotfb]');
+  fb.className = 'fb show ' + (ok ? 'ok' : 'bad');
+  fb.innerHTML = ok ? '<div class="fbh">' + ICONS.check + ' آفرین! ' + cfg.ok + '</div>' : '<div class="fbh">' + ICONS.note + ' دوباره امتحان کن!</div>';
+  Sound.play(ok ? 'ok' : 'no');
+  if (ok) { State.addScore(10); App.toast('+۱۰ امتیاز!'); }
+};
+
+/* ۵ بازی آموزشی */
+var GAMES = [
+  {
+    id: 'g1', title: 'بازی ۱: بخش‌پذیر هست یا نه؟', icon: 'divide',
+    desc: 'تشخیص سریع بخش‌پذیری بر اعداد ۲، ۵، ۱۰، ۳ و ۹ در سه سطح مهارتی.',
+    chips: ['ساده تا دشوار', '۱۰ سؤال', 'تمرین کتاب'],
+    build: function () {
+      var list = [
+        { n: 46, d: 2, exp: 'یکان ۶ زوج است' },
+        { n: 93, d: 2, exp: 'یکان ۳ فرد است' },
+        { n: 105, d: 5, exp: 'یکان ۵ است' },
+        { n: 90, d: 10, exp: 'یکان صفر است' },
+        { n: 84, d: 3, exp: '۸+۴ = ۱۲ مضرب ۳ است' },
+        { n: 79, d: 3, exp: '۷+۹ = ۱۶ بر ۳ بخش‌پذیر نیست' },
+        { n: 198, d: 9, exp: '۱+۹+۸ = ۱۸ مضرب ۹ است' },
+        { n: 552, d: 5, exp: 'یکان ۲ است و ۰ یا ۵ نیست' },
+        { n: 7000, d: 10, exp: 'یکان صفر است' },
+        { n: 246, d: 6, exp: 'زوج است و جمع رقم‌ها ۱۲ است' }
+      ];
+      return list.map(function(item){
+        var ok = (item.n % item.d === 0);
+        return {
+          type:'mc', prompt:'آیا عدد ' + UTIL.numInline(item.n, {cls:'tone-teal'}) + ' بر ' + UTIL.enToFa(item.d) + ' بخش‌پذیر است؟',
+          options:[
+            { t:'بله، بخش‌پذیر است', ok:ok, exp:item.exp },
+            { t:'نه، بخش‌پذیر نیست', ok:!ok, exp:item.exp }
+          ],
+          solution: UTIL.moneyLine(item.n, item.d)
+        };
+      });
+    }
+  },
+  {
+    id: 'g2', title: 'بازی ۲: رقم یکان را پیدا کن', icon: 'onesDigit',
+    desc: 'جای خالی را با کیپد رقمی پر کن تا عدد بر مقدار خواسته شده بخش‌پذیر شود.',
+    chips: ['جای خالی رقم', 'تمرین‌های رسمی', 'کیپد لمسی'],
+    build: function () {
+      return [
+        { type:'mc', prompt:'در جای خالی عدد ۳۱▢ چه رقمی بگذاریم تا بر ۵ بخش‌پذیر شود؟',
+          options:[{t:'۰ یا ۵', ok:true, exp:'یکان باید ۰ یا ۵ باشد.'}, {t:'۲ یا ۴', exp:'یکان زوج فقط بر ۲ است.'}, {t:'فقط ۳', exp:'۳ بر ۵ بخش‌پذیر نیست.'}],
+          solution:'۳۱۰ و ۳۱۵ بر ۵ بخش‌پذیرند.'
+        },
+        { type:'mc', prompt:'در عدد ۲۴▢ چه رقمی قرار دهیم تا هم بر ۲ و هم بر ۳ (و در نتیجه بر ۶) بخش‌پذیر شود؟',
+          options:[{t:'۰ یا ۶', ok:true, exp:'۲۴۰ و ۲۴۶ هم زوجند و هم جمع ارقامشان مضرب ۳ است.'}, {t:'۳ یا ۹', exp:'این ارقام عدد را فرد می‌کنند.'}, {t:'فقط ۵', exp:'۵ فرد است.'}],
+          solution:'ارقام ۰ یا ۶ عدد را هم بر ۲ و هم بر ۳ بخش‌پذیر می‌کنند.'
+        },
+        { type:'mc', prompt:'بزرگ‌ترین عدد سه رقمی بخش‌پذیر بر ۲ کدام است؟ (تمرین کتاب)',
+          options:[{t:'۹۹۸', ok:true, exp:'۹۹۹ فرد است، پس ۹۹۸ بزرگ‌ترین است.'}, {t:'۹۹۹', exp:'۹۹۹ فرد است.'}, {t:'۱۰۰۰', exp:'۱۰۰۰ چهار رقمی است.'}],
+          solution:'۹۹۸ بزرگترین عدد سه رقمی زوج است.'
+        },
+        { type:'mc', prompt:'کوچک‌ترین عدد سه رقمی بخش‌پذیر بر ۵ کدام است؟',
+          options:[{t:'۱۰۰', ok:true, exp:'۱۰۰ کوچکترین سه رقمی است و یکانش صفر است.'}, {t:'۱۰۵', exp:'۱۰۵ از ۱۰۰ بزرگتر است.'}, {t:'۹۹۵', exp:'۹۹۵ بزرگترین است.'}],
+          solution:'۱۰۰ کوچکترین عدد سه رقمی است و بر ۵ بخش‌پذیر است.'
+        }
+      ];
+    }
+  },
+  {
+    id: 'g3', title: 'بازی ۳: جمع رقم‌ها', icon: 'sum',
+    desc: 'محاسبه گام‌به‌گام جمع ارقام و تشخیص سریع بخش‌پذیری بر ۳ و ۹.',
+    chips: ['دو مرحله‌ای', 'تقویت هوش محاسباتی', '۸ سؤال'],
+    build: function () {
+      var nums = [282, 150, 3006, 93, 198, 50112, 54, 87];
+      return nums.map(function(n){
+        var s = UTIL.sumDigits(n);
+        var div3 = (s % 3 === 0);
+        return {
+          type:'mc',
+          prompt:'جمع رقم‌های عدد ' + UTIL.numInline(n, {cls:'tone-amber'}) + ' برابر با ' + UTIL.enToFa(s) + ' است. آیا این عدد بر ۳ بخش‌پذیر است؟',
+          options:[
+            { t: div3 ? 'بله، چون مجموع رقم‌ها بر ۳ بخش‌پذیر است' : 'نه، چون مجموع رقم‌ها بر ۳ بخش‌پذیر نیست', ok:true },
+            { t: div3 ? 'نه، بخش‌پذیر نیست' : 'بله، بخش‌پذیر است', ok:false }
+          ],
+          solution: UTIL.faNumSum(n) + ' = ' + UTIL.enToFa(s) + (div3 ? ' (بخش‌پذیر است)' : ' (بخش‌پذیر نیست)')
+        };
+      });
+    }
+  },
+  {
+    id: 'g4', title: 'بازی ۴: کارت‌های عددی ۹ ، ۰ ، ۵', icon: 'star',
+    desc: 'بازسازی تمرین ۳ صفحه ۱۲ کتاب ریاضی ششم با کارت‌های تعاملی رقمی.',
+    chips: ['کارت‌های ۹، ۰، ۵', 'ساخت اعداد سه رقمی', 'چندحالته'],
+    build: function () {
+      return [
+        { type:'mc', prompt:'با کارت‌های ۹، ۰ و ۵ یک عدد سه رقمی بسازید که بر ۲ بخش‌پذیر باشد:',
+          options:[{t:'۵۹۰ یا ۹۵۰', ok:true, exp:'یکان باید صفر باشد تا زوج شود.'}, {t:'۵۰۹', exp:'یکان ۹ فرد است.'}, {t:'۹۰۵', exp:'یکان ۵ فرد است.'}],
+          solution:'۵۹۰ و ۹۵۰ زوج هستند.'
+        },
+        { type:'mc', prompt:'با کارت‌های ۹، ۰ و ۵ یک عدد سه رقمی بسازید که بر ۵ بخش‌پذیر باشد ولی بر ۲ بخش‌پذیر نباشد:',
+          options:[{t:'۹۰۵', ok:true, exp:'یکان ۵ است (بر ۵ بخش‌پذیر) و فرد است (بر ۲ نیست).'}, {t:'۹۵۰', exp:'۹۵۰ زوج است و بر ۲ هم بخش‌پذیر می‌شود.'}, {t:'۵۹۰', exp:'۵۹۰ زوج است.'}],
+          solution:'۹۰۵ بر ۵ بخش‌پذیر است اما بر ۲ بخش‌پذیر نیست.'
+        },
+        { type:'mc', prompt:'با کارت‌های ۹، ۰ و ۵ عددی بسازید که نه بر ۲ و نه بر ۵ بخش‌پذیر باشد:',
+          options:[{t:'۵۰۹', ok:true, exp:'یکان ۹ است؛ نه زوج است و نه ۰ یا ۵.'}, {t:'۹۵۰', exp:'۹۵۰ بر هر دو بخش‌پذیر است.'}, {t:'۹۰۵', exp:'۹۰۵ بر ۵ بخش‌پذیر است.'}],
+          solution:'۵۰۹ تنها عددی است که بر ۲ و ۵ بخش‌پذیر نیست.'
+        }
+      ];
+    }
+  },
+  {
+    id: 'g5', title: 'بازی ۵: کارآگاه بخش‌پذیری', icon: 'check',
+    desc: 'جستجو و انتخاب چندگانه اعدادی که شرط‌های خاص را دارند.',
+    chips: ['انتخاب چندگانه', 'چالش سریع', 'امتیاز ویژه'],
+    build: function () {
+      return [
+        { type:'multi', prompt:'کارآگاه! تمام اعدادی که <b>بر ۲ بخش‌پذیرند</b> را پیدا کن:',
+          values:[46, 127, 358, 93, 7000, 74],
+          rule:function(v){return v%2===0;},
+          hint:'رقم یکان باید زوج باشد (۰، ۲، ۴، ۶، ۸).',
+          solution:'۴۶ ، ۳۵۸ ، ۷۰۰۰ ، ۷۴ اعداد زوج هستند.'
+        },
+        { type:'multi', prompt:'تمام اعدادی که <b>بر ۵ بخش‌پذیرند</b> را انتخاب کن:',
+          values:[105, 552, 9995, 80, 683, 70],
+          rule:function(v){return v%5===0;},
+          hint:'رقم یکان باید ۰ یا ۵ باشد.',
+          solution:'۱۰۵ ، ۹۹۹۵ ، ۸۰ ، ۷۰ یکانشان ۰ یا ۵ است.'
+        },
+        { type:'multi', prompt:'تمام اعدادی که <b>هم بر ۲ و هم بر ۵ (یعنی بر ۱۰)</b> بخش‌پذیرند:',
+          values:[90, 105, 70, 34, 85, 7000],
+          rule:function(v){return v%10===0;},
+          hint:'رقم یکان باید صفر باشد.',
+          solution:'۹۰ ، ۷۰ ، ۷۰۰۰ رقم یکان صفر دارند.'
+        }
+      ];
+    }
+  }
+];
+/* ۱۰ سؤال آزمون نهایی */
+function examItems() {
+  return [
+    { type:'mc', prompt:'۱) چه زمانی می‌گوییم یک عدد بر عدد دیگری بخش‌پذیر است؟',
+      options:[
+        {t:'وقتی باقی‌مانده تقسیم صفر شود', ok:true, exp:'آفرین! بخش‌پذیری یعنی تقسیم دقیق و بدون باقی‌مانده.'},
+        {t:'وقتی خارج‌قسمت زوج شود', exp:'خارج‌قسمت مهم نیست، باقی‌مانده باید صفر باشد.'},
+        {t:'وقتی مقسوم از مقسوم‌علیه کوچک‌تر باشد', exp:'خیر، باید باقیمانده صفر شود.'}
+      ],
+      solution:'تعریف بخش‌پذیری: باقی‌مانده تقسیم برابر صفر باشد.'
+    },
+    { type:'mc', prompt:'۲) کدام‌یک از اعداد زیر بر ۲ بخش‌پذیر است؟',
+      options:[
+        {t:'۷۵۴', ok:true, exp:'یکان ۴ زوج است.'},
+        {t:'۸۳۱', exp:'یکان ۱ فرد است.'},
+        {t:'۹۰۵', exp:'یکان ۵ فرد است.'}
+      ],
+      solution:'۷۵۴ چون رقم یکانش زوج است.'
+    },
+    { type:'mc', prompt:'۳) عددی که رقم یکان آن ۵ باشد، حتماً بر کدام عدد بخش‌پذیر است؟',
+      options:[
+        {t:'بر ۵', ok:true, exp:'قاعده بخش‌پذیری بر ۵: یکان ۰ یا ۵.'},
+        {t:'بر ۲', exp:'فرد است و بر ۲ بخش‌پذیر نیست.'},
+        {t:'بر ۱۰', exp:'بر ۱۰ باید یکان حتما صفر باشد.'}
+      ],
+      solution:'عددی با یکان ۵ بر ۵ بخش‌پذیر است.'
+    },
+    { type:'mc', prompt:'۴) عددی بر ۱۰ بخش‌پذیر است اگر و فقط اگر رقم یکان آن ... باشد.',
+      options:[
+        {t:'صفر', ok:true, exp:'باید هم بر ۲ و هم بر ۵ بخش‌پذیر باشد پس یکان صفر است.'},
+        {t:'۵', exp:'یکان ۵ فقط بر ۵ است نه بر ۱۰.'},
+        {t:'زوج', exp:'زوج بودن به تنهایی کافی نیست (مثل ۱۲).'}
+      ],
+      solution:'رقم یکان باید صفر باشد.'
+    },
+    { type:'mc', prompt:'۵) جمع رقم‌های عدد ۳۰۰۶ برابر ۹ است. آیا این عدد بر ۳ بخش‌پذیر است؟',
+      options:[
+        {t:'بله؛ چون ۹ بر ۳ بخش‌پذیر است', ok:true, exp:'قاعده بخش‌پذیری بر ۳ تایید می‌کند.'},
+        {t:'خیر؛ چون فرد است', exp:'۳۰۰۶ زوج است و جمع ارقامش هم ۹ است.'}
+      ],
+      solution:'۳+۰+۰+۶ = ۹ که بر ۳ بخش‌پذیر است.'
+    },
+    { type:'mc', prompt:'۶) کدام عدد هم بر ۳ و هم بر ۹ بخش‌پذیر است؟',
+      options:[
+        {t:'۱۹۸', ok:true, exp:'۱+۹+۸ = ۱۸ که هم بر ۳ و هم بر ۹ بخش‌پذیر است.'},
+        {t:'۸۴', exp:'۸+۴ = ۱۲ که بر ۳ بخش‌پذیر است ولی بر ۹ نیست.'},
+        {t:'۲۳', exp:'۲+۳ = ۵ است.'}
+      ],
+      solution:'۱۹۸ جمع رقم‌هایش ۱۸ است.'
+    },
+    { type:'mc', prompt:'۷) عددی بر ۶ بخش‌پذیر است هرگاه ...',
+      options:[
+        {t:'هم بر ۲ و هم بر ۳ بخش‌پذیر باشد', ok:true, exp:'چون ۶ = ۲ × ۳.'},
+        {t:'فقط رقم یکانش ۶ باشد', exp:'خیر، مثلا ۱۶ بر ۶ بخش‌پذیر نیست.'},
+        {t:'فقط جمع رقم‌هایش ۶ شود', exp:'باید زوج هم باشد.'}
+      ],
+      solution:'باید هم بر ۲ و هم بر ۳ بخش‌پذیر باشد.'
+    },
+    { type:'mc', prompt:'۸) با کارت‌های ۹، ۰ و ۵ کدام عدد ساخته شود تا بر ۲ بخش‌پذیر شود؟',
+      options:[
+        {t:'۹۵۰', ok:true, exp:'یکان صفر زوج است.'},
+        {t:'۹۰۵', exp:'یکان ۵ فرد است.'},
+        {t:'۵۰۹', exp:'یکان ۹ فرد است.'}
+      ],
+      solution:'۹۵۰ و ۵۹۰'
+    },
+    { type:'mc', prompt:'۹) در جای خالی عدد ۳۱▢ کدام رقم قرار گیرد تا بر ۵ بخش‌پذیر شود؟',
+      options:[
+        {t:'۰ یا ۵', ok:true, exp:'یکان باید ۰ یا ۵ باشد.'},
+        {t:'فقط ۲', exp:'۲ بر ۵ بخش‌پذیر نیست.'},
+        {t:'فقط ۹', exp:'۹ بر ۵ بخش‌پذیر نیست.'}
+      ],
+      solution:'۳۱۰ و ۳۱۵'
+    },
+    { type:'mc', prompt:'۱۰) کوچک‌ترین عدد سه رقمی بخش‌پذیر بر ۳ و ۵ کدام است؟',
+      options:[
+        {t:'۱۰۵', ok:true, exp:'یکان ۵ (بر ۵) و ۱+۰+۵=۶ (بر ۳) ⟶ کوچکترین سه رقمی.'},
+        {t:'۱۰۰', exp:'۱۰۰ بر ۳ بخش‌پذیر نیست.'},
+        {t:'۱۲۰', exp:'۱۲۰ بزرگتر از ۱۰۵ است.'}
+      ],
+      solution:'۱۰۵ کوچکترین عدد سه رقمی بخش‌پذیر بر ۳ و ۵ است.'
+    }
+  ];
+}
+/* موتور اجرای بازی و آزمون */
+var Engine = {
+  cfg: null, idx: 0, score: 0, correct: 0, solved: false, streak: 0,
+  start: function (cfg) {
+    this.cfg = cfg; this.idx = 0; this.score = 0; this.correct = 0; this.streak = 0;
+    App.go('play');
+    this.render();
+  },
+  item: function () { return this.cfg.items[this.idx]; },
+  render: function () {
+    var it = this.item(), n = this.cfg.items.length;
+    this.solved = false;
+    document.getElementById('play-title').textContent = this.cfg.title;
+    document.getElementById('play-hud').innerHTML =
+      '<span class="pill">سؤال <b>' + UTIL.enToFa(this.idx + 1) + '</b> از <b>' + UTIL.enToFa(n) + '</b></span>' +
+      '<span class="pill score">امتیاز این دور: <b>' + UTIL.enToFa(this.score) + '</b></span>' +
+      (this.streak > 1 ? '<span class="pill streak">پیاپی درست: <b>' + UTIL.enToFa(this.streak) + '</b></span>' : '');
+
+    var progress = Math.round((this.idx) / n * 100);
+    document.getElementById('pbar').style.width = progress + '%';
+    document.getElementById('pmeta-label').textContent = this.cfg.title;
+    document.getElementById('pmeta-value').textContent = 'سؤال ' + UTIL.enToFa(this.idx + 1) + ' از ' + UTIL.enToFa(n);
+
+    var html = '<div class="card"><div class="qprompt">' + it.prompt + '</div><div data-answer></div><div class="fb" data-itemfb></div></div>';
+    document.getElementById('play-stage').innerHTML = html;
+    var holder = document.querySelector('[data-answer]');
+
+    if (it.type === 'mc') {
+      holder.innerHTML = '<div class="opts">' + it.options.map(function(o, i){
+        return '<button class="opt" data-action="engine-mc" data-i="' + i + '">' + o.t + '</button>';
+      }).join('') + '</div>';
+    } else if (it.type === 'multi') {
+      holder.innerHTML = '<div class="pickgrid" data-engine-multi>' + it.values.map(function(v){
+        return '<button class="pick" data-action="engine-multi-pick" data-v="' + v + '">' + UTIL.enToFa(v) + '</button>';
+      }).join('') + '</div>' +
+      '<div class="actions"><button class="btn small teal" data-action="engine-multi-check">بررسی انتخاب‌ها</button></div>';
+    }
+
+    document.getElementById('play-actions').innerHTML =
+      '<button class="btn ghost small" data-action="back-to" data-to="' + (this.cfg.backTo || 'games') + '">بازگشت</button>' +
+      '<button class="btn ghost small" data-action="home">منوی اصلی</button>';
+  },
+  mc: function (i) {
+    if (this.solved) return;
+    var it = this.item(), o = it.options[i];
+    var btns = document.querySelectorAll('.opt');
+    if (o.ok) {
+      btns[i].classList.add('ok');
+      this.solved = true; this.correct++;
+      this.score += 10; this.streak++;
+      State.addScore(10);
+      Sound.play('ok');
+      App.toast('+۱۰ امتیاز!');
+      this.feedback(true, o.exp || 'آفرین! کاملاً درست است.');
+      this.showNextButton();
+    } else {
+      btns[i].classList.add('bad');
+      this.streak = 0;
+      Sound.play('no');
+      this.feedback(false, o.exp || 'پاسخ نادرست است؛ دوباره فکر کن.');
+    }
+  },
+  multiCheck: function () {
+    if (this.solved) return;
+    var it = this.item();
+    var btns = document.querySelectorAll('[data-engine-multi] .pick');
+    var wrong = 0, missed = 0;
+    for (var i = 0; i < btns.length; i++) {
+      var v = +btns[i].getAttribute('data-v');
+      var should = it.rule(v);
+      if (btns[i].classList.contains('sel')) {
+        if (should) { btns[i].classList.remove('sel'); btns[i].classList.add('ok'); }
+        else { wrong++; btns[i].classList.add('bad'); }
+      } else if (should) missed++;
+    }
+    if (wrong === 0 && missed === 0) {
+      this.solved = true; this.correct++;
+      this.score += 15; this.streak++;
+      State.addScore(15);
+      Sound.play('ok');
+      App.toast('+۱۵ امتیاز ویژه!');
+      this.feedback(true, 'عالی بود! همه موارد را به درستی پیدا کردی.');
+      this.showNextButton();
+    } else {
+      this.streak = 0;
+      Sound.play('no');
+      this.feedback(false, (wrong ? 'گزینه اشتباه انتخاب شده. ' : '') + (missed ? 'برخی اعداد صحیح جا مانده‌اند.' : ''));
+    }
+  },
+  showNextButton: function () {
+    var isLast = this.idx === this.cfg.items.length - 1;
+    document.getElementById('play-actions').innerHTML =
+      '<button class="btn" data-action="engine-next">' + (isLast ? 'مشاهده کارنامه و نتیجه' : 'سؤال بعدی ⬅️') + '</button>' +
+      '<button class="btn ghost small" data-action="home">منوی اصلی</button>';
+  },
+  next: function () {
+    if (this.idx === this.cfg.items.length - 1) { this.finish(); return; }
+    this.idx++; this.render();
+  },
+  feedback: function (ok, text) {
+    var fb = document.querySelector('[data-itemfb]');
+    fb.className = 'fb show ' + (ok ? 'ok' : 'bad');
+    fb.innerHTML = '<div class="fbh">' + (ok ? ICONS.check + ' آفرین!' : ICONS.note + ' راهنما') + '</div><div>' + text + '</div>';
+  },
+  finish: function () {
+    var n = this.cfg.items.length, pct = Math.round(this.correct / n * 100);
+    App.renderResult({
+      title: this.cfg.title, score: this.score, correct: this.correct, total: n, pct: pct,
+      id: this.cfg.id, backTo: this.cfg.backTo || 'games'
+    });
+  }
+};
+/* کنترلر اصلی برنامه */
+var App = {
+  lessonIdx: 0,
+  go: function (name) {
+    var screens = ['welcome', 'home', 'lesson', 'games', 'play', 'result', 'table'];
+    screens.forEach(function(s){
+      var el = document.getElementById('screen-' + s);
+      if (el) el.classList.toggle('active', s === name);
+    });
+    State.screen = name;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.updateHeaderBadges();
+    this.renderNav();
+    if (name === 'home') this.renderHome();
+    if (name === 'lesson') this.renderLesson();
+    if (name === 'games') this.renderGames();
+    if (name === 'table') this.renderTable();
+  },
+  updateHeaderBadges: function () {
+    var uBadge = document.getElementById('header-user-badge');
+    var sBadge = document.getElementById('header-score-badge');
+    if (State.studentName) {
+      uBadge.style.display = 'inline-flex';
+      sBadge.style.display = 'inline-flex';
+      document.getElementById('header-user-name').textContent = State.studentName;
+      document.getElementById('header-user-score').textContent = UTIL.enToFa(State.data.totalScore || 0);
+    } else {
+      uBadge.style.display = 'none';
+      sBadge.style.display = 'none';
+    }
+  },
+  renderNav: function () {
+    if (State.screen === 'welcome') {
+      document.getElementById('navbtns').innerHTML = '';
+      return;
+    }
+    var items = [
+      { k:'home', t:'داشبورد', ic:'<path d="M4 10.5 12 4l8 6.5V20H4z"/>' },
+      { k:'lesson', t:'درس', ic:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/>' },
+      { k:'games', t:'بازی‌ها', ic:'<rect x="2.5" y="6" width="19" height="13" rx="4"/><path d="M7 12h3M8.5 10.5v3"/>' },
+      { k:'table', t:'جدول قواعد', ic:'<rect x="3" y="3.5" width="18" height="17" rx="3"/><path d="M3 9h18M9 9v11.5"/>' }
+    ];
+    document.getElementById('navbtns').innerHTML = items.map(function(it){
+      var active = (it.k === State.screen);
+      return '<button class="iconbtn' + (active ? ' primary' : '') + '" data-action="nav" data-nav="' + it.k + '">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' + it.ic + '</svg>' +
+        '<span class="lbl-hide">' + it.t + '</span></button>';
+    }).join('');
+  },
+  renderHome: function () {
+    document.getElementById('home-greeting').textContent = 'سلام ' + (State.studentName || 'دانش‌آموز') + ' عزیز! خوش اومدی 👋';
+    document.getElementById('banner-score-val').textContent = UTIL.enToFa(State.data.totalScore || 0);
+    document.getElementById('pmeta-label').textContent = 'داشبورد دانش‌آموز: ' + State.studentName;
+    document.getElementById('pmeta-value').textContent = 'امتیاز کل: ' + UTIL.enToFa(State.data.totalScore || 0);
+
+    var slidesCount = SLIDES.length;
+    var seenCount = Object.keys(State.data.progress.lesson.seen).length;
+    var pct = Math.round(seenCount / slidesCount * 100);
+    document.getElementById('pbar').style.width = pct + '%';
+
+    document.getElementById('home-progress').innerHTML =
+      '<div class="kv"><span>نام دانش‌آموز</span><b>' + (State.studentName || '—') + '</b></div>' +
+      '<div class="kv"><span>مجموع امتیازات کسب‌شده</span><b style="color:var(--amber-d);font-size:1.15rem">⭐ ' + UTIL.enToFa(State.data.totalScore || 0) + ' امتیاز</b></div>' +
+      '<div class="kv"><span>پیشرفت مطالعه اسلایدها</span><b>' + UTIL.enToFa(seenCount) + ' از ' + UTIL.enToFa(slidesCount) + ' (' + UTIL.enToFa(pct) + '٪)</b></div>' +
+      '<div class="progressbar" style="border-radius:99px;margin-top:4px"><i style="width:' + pct + '%"></i></div>';
+  },
+  renderLesson: function () {
+    var sl = SLIDES[this.lessonIdx];
+    document.getElementById('lesson-step-kicker').textContent = sl.kicker;
+    document.getElementById('lesson-title').textContent = sl.title;
+    document.getElementById('lesson-stage').innerHTML = sl.render() +
+      '<div class="card tight mt"><div class="actions" style="margin-top:0">' +
+      '<button class="btn small ghost" data-action="lesson-prev"' + (this.lessonIdx === 0 ? ' disabled' : '') + '>مرحله قبل</button>' +
+      (this.lessonIdx === SLIDES.length - 1
+        ? '<button class="btn small" data-action="open-games">ورود به بازی‌ها 🎮</button>'
+        : '<button class="btn small" data-action="lesson-next">مرحله بعد ⬅️</button>') +
+      '<button class="btn small ghost" data-action="home">منوی اصلی</button>' +
+      '</div></div>';
+
+    document.getElementById('lesson-dots').innerHTML = SLIDES.map(function(s, i){
+      var cls = (i === this.lessonIdx ? 'cur' : (State.data.progress.lesson.seen[s.id] ? 'done' : ''));
+      return '<button class="' + cls + '" data-action="lesson-goto" data-i="' + i + '">' + UTIL.enToFa(i + 1) + '</button>';
+    }, this).join('');
+
+    State.data.progress.lesson.seen[sl.id] = true;
+    State.save();
+    document.getElementById('pmeta-label').textContent = sl.title;
+    document.getElementById('pbar').style.width = Math.round((this.lessonIdx + 1) / SLIDES.length * 100) + '%';
+  },
+  lessonGo: function (i) {
+    this.lessonIdx = Math.max(0, Math.min(SLIDES.length - 1, i));
+    this.renderLesson();
+    Sound.play('tick');
+  },
+  renderGames: function () {
+    document.getElementById('pmeta-label').textContent = 'بازی‌های بخش‌پذیری';
+    document.getElementById('games-grid').innerHTML = GAMES.map(function(g){
+      return '<div class="game-card">' +
+        '<div class="gic" style="background:var(--teal-s);color:var(--teal-d)">' + ICONS[g.icon] + '</div>' +
+        '<h3>' + g.title + '</h3><p>' + g.desc + '</p>' +
+        '<div class="chips">' + g.chips.map(function(c){return '<span class="chip">' + c + '</span>'}).join('') + '</div>' +
+        '<div class="rowbtns"><button class="btn small teal" style="width:100%" data-action="start-game" data-game="' + g.id + '">شروع این بازی 🚀</button></div>' +
+        '</div>';
+    }).join('');
+  },
+  renderTable: function () {
+    document.getElementById('pmeta-label').textContent = 'جدول مرور قواعد';
+    document.getElementById('table-stage').innerHTML =
+      '<div class="card tight">' + UI.rulesTable() + '</div>' +
+      '<div class="card center"><h3 style="margin:4px 0 10px">آماده‌ای برای آزمون ۱۰ سؤالی؟</h3>' +
+      '<div class="actions" style="justify-content:center">' +
+      '<button class="btn amber" data-action="open-exam">شروع آزمون نهایی 📝</button>' +
+      '<button class="btn ghost" data-action="open-games">بازی‌های آموزشی 🎮</button></div></div>';
+  },
+  renderResult: function (r) {
+    var pct = r.pct;
+    var msg = pct >= 80 ? 'بسیار عالی و درخشان! تسلطت روی بخش‌پذیری فوق‌العاده است 🌟' :
+              pct >= 50 ? 'خیلی خوب بود! با یک بار مرور اسلایدها و جدول قواعد به ۱۰۰٪ می‌رسی 👍' :
+              'نیاز به تمرین بیشتر داری. حتماً بخش یادگیری اسلایدها را یک بار دیگر بخوان 📚';
+    document.getElementById('result-stage').innerHTML =
+      '<div class="card center">' +
+      '<span class="kicker ' + (pct >= 60 ? 'teal' : 'amber') + '">' + r.title + '</span>' +
+      '<div class="score-ring"><svg width="140" height="140">' +
+      '<circle cx="70" cy="70" r="58" fill="none" stroke="#e2e8f0" stroke-width="12"/>' +
+      '<circle cx="70" cy="70" r="58" fill="none" stroke="' + (pct >= 60 ? 'var(--teal)' : 'var(--amber)') + '" stroke-width="12" stroke-linecap="round" ' +
+      'stroke-dasharray="' + (2*Math.PI*58).toFixed(1) + '" stroke-dashoffset="' + ((2*Math.PI*58)*(1-pct/100)).toFixed(1) + '"/></svg>' +
+      '<div class="txt">' + UTIL.enToFa(pct) + '٪</div></div>' +
+      '<h2>' + msg + '</h2>' +
+      '<p class="note">دانش‌آموز عزیز: <b>' + State.studentName + '</b> | پاسخ‌های درست: <b>' + UTIL.enToFa(r.correct) + '</b> از <b>' + UTIL.enToFa(r.total) + '</b></p>' +
+      '<p class="note" style="color:var(--amber-d);font-weight:800">امتیاز کل ثبت‌شده شما: ' + UTIL.enToFa(State.data.totalScore) + ' امتیاز</p>' +
+      '<div class="actions" style="justify-content:center">' +
+      '<button class="btn" data-action="home">بازگشت به داشبورد</button>' +
+      '<button class="btn ghost" data-action="open-games">انجام سایر بازی‌ها</button>' +
+      '</div></div>';
+    this.go('result');
+    Sound.play(pct >= 60 ? 'win' : 'tick');
+  },
+  toast: function (msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg; el.classList.add('show');
+    clearTimeout(this._tt);
+    this._tt = setTimeout(function(){ el.classList.remove('show'); }, 1600);
+  },
+  toggleSound: function () {
+    State.data.sound = !State.data.sound; State.save();
+    document.getElementById('btn-sound').textContent = 'صدا: ' + (State.data.sound ? 'روشن' : 'خاموش');
+    this.toast('صدا ' + (State.data.sound ? 'روشن' : 'خاموش') + ' شد');
+  },
+  onQuestionCorrect: function (id) {
+    State.data.progress.lesson.qs[id] = true;
+    State.save();
+  },
+  init: function () {
+    State.load();
+    if (State.studentName && State.studentName.trim().length > 0) {
+      this.go('home');
+    } else {
+      this.go('welcome');
+    }
+  }
+};
+/* مدیریت کلیک‌ها و رویدادهای کاربر */
+document.addEventListener('click', function (e) {
+  var actEl = e.target.closest('[data-action]');
+  if (!actEl) return;
+  var act = actEl.getAttribute('data-action');
+
+  switch (act) {
+    case 'submit-name':
+      var inp = document.getElementById('student-name-input');
+      var val = (inp.value || '').trim();
+      if (!val) {
+        App.toast('لطفاً نام خود را وارد کنید 😊');
+        inp.focus();
+        return;
+      }
+      State.studentName = val;
+      State.save();
+      App.toast('خوش آمدی ' + val + ' عزیز!');
+      App.go('home');
+      break;
+
+    case 'change-name':
+      App.go('welcome');
+      setTimeout(function(){
+        var inp2 = document.getElementById('student-name-input');
+        if (inp2) { inp2.value = State.studentName || ''; inp2.focus(); }
+      }, 100);
+      break;
+
+    case 'nav':
+      App.go(actEl.getAttribute('data-nav'));
+      break;
+    case 'home': App.go('home'); break;
+    case 'open-lesson': App.go('lesson'); break;
+    case 'open-games': App.go('games'); break;
+    case 'open-table': App.go('table'); break;
+
+    case 'open-exam':
+      Engine.start({ id:'exam', title:'آزمون نهایی بخش‌پذیری (ریاضی ششم)', items: examItems(), backTo:'home' });
+      break;
+
+    case 'start-game':
+      var gid = actEl.getAttribute('data-game');
+      var game = GAMES.filter(function(x){return x.id === gid;})[0];
+      if (game) Engine.start({ id: game.id, title: game.title, items: game.build(), backTo:'games' });
+      break;
+
+    case 'lesson-next': App.lessonGo(App.lessonIdx + 1); break;
+    case 'lesson-prev': App.lessonGo(App.lessonIdx - 1); break;
+    case 'lesson-goto': App.lessonGo(+actEl.getAttribute('data-i')); break;
+    case 'back-to': App.go(actEl.getAttribute('data-to')); break;
+
+    case 'toggle-sound': App.toggleSound(); break;
+    case 'reveal': W.reveal(actEl); break;
+    case 'check-picks': W.checkPicks(actEl); break;
+
+    case 'engine-mc': Engine.mc(+actEl.getAttribute('data-i')); break;
+    case 'engine-multi-pick': Engine.multiPick(actEl); break;
+    case 'engine-multi-check': Engine.multiCheck(); break;
+    case 'engine-next': Engine.next(); break;
+
+    case 'open-reset-modal':
+      document.getElementById('reset-modal').classList.add('show');
+      break;
+    case 'close-modal':
+      document.getElementById('reset-modal').classList.remove('show');
+      break;
+    case 'confirm-reset':
+      document.getElementById('reset-modal').classList.remove('show');
+      State.reset();
+      App.toast('تمام سوابق و امتیازها با موفقیت پاک شدند.');
+      App.renderHome();
+      break;
+  }
+});
+
+/* کلیک روی گزینه‌های سؤال و ارقام */
+document.addEventListener('click', function (e) {
+  var opt = e.target.closest('.opt');
+  if (opt && opt.closest('[data-qid]')) { W.q(opt); return; }
+  var pk = e.target.closest('.pick');
+  if (pk && pk.closest('[data-pickgroup]')) { W.pick(pk); return; }
+});
+
+/* اجرای اولیه پس از لود صفحه */
+document.addEventListener('DOMContentLoaded', function () {
+  App.init();
+});
+</script>
+</body>
+</html>
